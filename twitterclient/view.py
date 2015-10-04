@@ -1,15 +1,9 @@
 import curses
 
-from client import TwitterClient
 
-
-class TwitterClientInterface(object):
-
+class View(object):
     # The app's screen
     screen = curses.initscr()
-
-    # The Twitter library
-    client = TwitterClient()
 
     # The area that will show the current status
     status_area = False
@@ -23,14 +17,8 @@ class TwitterClientInterface(object):
     # The area that will receive the input for the user
     search_window = False
 
-    # The curent status
-    status = "Please input a command"
-
     def __init__(self):
         self.init_interface()
-        self.print_intro()
-        self.update_status_area()
-        self.init_command_listener()
 
     def draw_screen_areas(self):
         '''
@@ -64,19 +52,17 @@ class TwitterClientInterface(object):
 
         self.draw_screen_areas()
 
-    def init_command_listener(self):
-        command = self.get_input("What would you like to do: ")
-
     def update_main_screen(self, content):
         self.screen.clear()
         self.screen.addstr(0, 0, content)
         self.screen.refresh()
 
-    def update_status_area(self):
-        self.status_area.addstr(0, 0, self.status)
+    def update_status_area(self, message):
+        self.status_area.addstr(0, 0, message)
+        self.status_area.clrtoeol()
         self.status_area.refresh()
 
-    def print_intro(self):
+    def print_intro(self, status):
         intro_text = '''
                      _____         _     _____        _ _   _                   _ _            _
                     |_   _|       | |   |_   _|      (_) | | |                 | (_)          | |
@@ -85,9 +71,16 @@ class TwitterClientInterface(object):
                       | |  __/\__ \ |_    | |\ V  V /| | |_| ||  __/ |    | (__| | |  __/ | | | |_
                       \_/\___||___/\__|   \_/ \_/\_/ |_|\__|\__\___|_|     \___|_|_|\___|_| |_|\__|
 
+                    Available commands:
+                    help    - gets you back to this screen
+                    login   - starts the flow to log you in to Twitter
+                    logout  - logs you out
+                    list    - list the most recent tweets
+                    post    - post a tweet
+
                     '''
 
-        intro_text += "Status: %s" % self.client.get_status()
+        intro_text += "Status: %s" % status
 
         self.update_main_screen(intro_text)
 
@@ -109,6 +102,3 @@ class TwitterClientInterface(object):
 
         curses.curs_set(0)
         return user_input
-
-if __name__ == '__main__':
-    TwitterClientInterface()

@@ -13,7 +13,7 @@ config = {
     'install_requires': ['nose'],
     'packages': [],
     'scripts': [],
-    'name': 'twitter-terminal-client'
+    'name': 'twitterclient'
 }
 
 setup(**config)
