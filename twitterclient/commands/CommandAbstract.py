@@ -1,5 +1,4 @@
-import tweepy
-from helpers import Config
+from ..helpers import Config
 
 
 class CommandAbstract(object):
@@ -9,9 +8,9 @@ class CommandAbstract(object):
     # the user configs
     user_config = Config().load('user')
 
-    def __init__(self, view, twitter_auth):
+    def __init__(self, view, twitter):
         self.view = view
-        self.twitter_auth = twitter_auth
+        self.twitter = twitter
 
     def run(self):
         raise NotImplementedError()
