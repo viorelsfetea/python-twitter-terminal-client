@@ -1,6 +1,6 @@
 import sys
 import unittest
-from mock import patch, Mock
+from mock import Mock
 from nose.tools import raises
 
 # simply importing the curses module transforms the terminal
@@ -11,9 +11,5 @@ sys.modules['curses'] = Mock()
 from twitterclient.controller import Controller
 
 
-class ControllerTest(unittest.TestCase):
-    controller = Controller()
-
-    @raises(SystemExit)
-    def test_exit(self):
-        self.controller.do_exit()
+#class ControllerTest(unittest.TestCase):
+    #controller = Controller()

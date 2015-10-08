@@ -73,6 +73,7 @@ class View(object):
 
                     Available commands:
                     help    - gets you back to this screen
+                    exit    - quit the program
                     login   - starts the flow to log you in to Twitter
                     logout  - logs you out
                     list    - list the most recent tweets
