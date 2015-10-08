@@ -53,7 +53,7 @@ class View(object):
         self.draw_screen_areas()
 
     def update_main_screen(self, content):
-        self.screen.clear()
+        # self.screen.clear()
         self.screen.addstr(0, 0, content)
         self.screen.refresh()
 

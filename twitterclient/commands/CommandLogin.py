@@ -2,7 +2,7 @@ from CommandAbstract import CommandAbstract
 import tweepy
 import webbrowser
 
-from helpers import Config
+from ..helpers import Config
 
 
 class CommandLogin(CommandAbstract):
@@ -13,8 +13,8 @@ class CommandLogin(CommandAbstract):
         """
         Opens a browser window to show the authorization PIN to the user
         """
-        try:
-            webbrowser.open(self.twitter_auth.get_authorization_url())
+        try:    
+            webbrowser.open(self.twitter.twitter_auth.get_authorization_url())
         except tweepy.TweepError:
             self.view.update_status_area('Error! Failed to get request token.')
         else:
@@ -34,7 +34,7 @@ class CommandLogin(CommandAbstract):
         :param pin:
         """
         try:
-            consumer_token, consumer_secret = self.twitter_auth.get_access_token(pin)
+            consumer_token, consumer_secret = self.twitter.twitter_auth.get_access_token(pin)
         except tweepy.error.TweepError:
             self.view.update_status_area('Failed to get request token. Please try again')
         else:
@@ -42,3 +42,13 @@ class CommandLogin(CommandAbstract):
                 'client_consumer_token': consumer_token,
                 'client_consumer_secret': consumer_secret
             }, 'Client')
+
+            self.finish_login()
+
+    def finish_login(self):
+        self.twitter.load_api_handler()
+
+        user = self.twitter.get_user()
+
+        self.view.print_intro("You are logged in as %s" % user.screen_name)
+        self.view.update_status_area('Successfully logged in. Input your command')
