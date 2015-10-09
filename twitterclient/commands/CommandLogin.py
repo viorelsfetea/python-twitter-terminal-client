@@ -22,7 +22,7 @@ class CommandLogin(CommandAbstract):
 
     def get_twitter_access_token(self):
         """
-        Creates a listener for the PIN user input
+        Create a listener for the PIN user input
         """
         pin = self.view.get_input('PIN from the browser: ')
 
@@ -30,7 +30,7 @@ class CommandLogin(CommandAbstract):
 
     def save_twitter_access_token(self, pin):
         """
-        Saves the access token generated based on the PIN entered by the user
+        Save the access token generated based on the PIN entered by the user
         :param pin:
         """
         try:

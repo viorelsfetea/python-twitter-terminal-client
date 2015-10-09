@@ -53,7 +53,7 @@ class View(object):
         self.draw_screen_areas()
 
     def update_main_screen(self, content):
-        # self.screen.clear()
+        self.screen.clear()
         self.screen.addstr(0, 0, content)
         self.screen.refresh()
 
@@ -64,12 +64,12 @@ class View(object):
 
     def print_intro(self, status):
         intro_text = '''
-                     _____         _     _____        _ _   _                   _ _            _
-                    |_   _|       | |   |_   _|      (_) | | |                 | (_)          | |
-                      | | ___  ___| |_    | |_      ___| |_| |_ ___ _ __    ___| |_  ___ _ __ | |_
-                      | |/ _ \/ __| __|   | \ \ /\ / / | __| __/ _ \ '__|  / __| | |/ _ \ '_ \| __|
-                      | |  __/\__ \ |_    | |\ V  V /| | |_| ||  __/ |    | (__| | |  __/ | | | |_
-                      \_/\___||___/\__|   \_/ \_/\_/ |_|\__|\__\___|_|     \___|_|_|\___|_| |_|\__|
+                     _____        _ _   _                   _ _            _
+                    |_   _|      (_) | | |                 | (_)          | |
+                      | |_      ___| |_| |_ ___ _ __    ___| |_  ___ _ __ | |_
+                      | \ \ /\ / / | __| __/ _ \ '__|  / __| | |/ _ \ '_ \| __|
+                      | |\ V  V /| | |_| ||  __/ |    | (__| | |  __/ | | | |_
+                      \_/ \_/\_/ |_|\__|\__\___|_|     \___|_|_|\___|_| |_|\__|
 
                     Available commands:
                     help    - gets you back to this screen

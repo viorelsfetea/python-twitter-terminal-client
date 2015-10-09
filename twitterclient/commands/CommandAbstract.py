@@ -12,5 +12,10 @@ class CommandAbstract(object):
         self.view = view
         self.twitter = twitter
 
+    def require_valid_session(self):
+        if self.twitter.api is None:
+            self.view.update_status_area("You need to be logged in to run this command")
+            return False
+
     def run(self):
         raise NotImplementedError()

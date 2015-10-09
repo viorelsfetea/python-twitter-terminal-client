@@ -3,4 +3,4 @@ from CommandAbstract import CommandAbstract
 
 class CommandHelp(CommandAbstract):
     def run(self):
-        pass
+        self.view.print_intro(self.twitter.get_status())

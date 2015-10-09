@@ -15,12 +15,18 @@ class Twitter(object):
         self.load_api_handler()
 
     def load_auth_handler(self):
+        """
+        Load the Twitter Auth handler
+        """
         self.twitter_auth = tweepy.OAuthHandler(
             Config().load('general').get('Twitter', 'consumer_token'),
             Config().load('general').get('Twitter', 'consumer_secret')
         )
 
     def load_api_handler(self):
+        """
+        Load the Twitter API handler
+        """
         try:
             self.twitter_auth.set_access_token(
                 Config().load('user').get('Client', 'client_consumer_token'),
