@@ -46,6 +46,9 @@ class CommandLogin(CommandAbstract):
             self.finish_login()
 
     def finish_login(self):
+        """
+        Finish the login process, get the user info and reprint the first screen
+        """
         self.twitter.load_api_handler()
 
         user = self.twitter.get_user()

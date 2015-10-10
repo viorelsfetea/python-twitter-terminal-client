@@ -17,6 +17,9 @@ class CommandPost(CommandAbstract):
         self.save_post()
 
     def save_post(self):
+        """
+        Save the post to Twitter
+        """
         if self.post_is_valid():
             try:
                 self.twitter.api.update_status(status=self.post)
@@ -26,6 +29,10 @@ class CommandPost(CommandAbstract):
                 self.view.update_status_area('Successfully updated your status')
 
     def post_is_valid(self):
+        """
+        Check if the inputted post is shorter than 140
+        :return: bool
+        """
         if self.post is not None and len(self.post) <= 140:
             return True
 

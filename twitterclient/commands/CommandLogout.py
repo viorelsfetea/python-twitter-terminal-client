@@ -14,3 +14,4 @@ class CommandLogout(CommandAbstract):
             self.view.update_status_area("Could not log you out. Please try again")
         else:
             self.view.update_status_area("Successfully logged you out")
+            self.view.print_intro("Not logged in")
