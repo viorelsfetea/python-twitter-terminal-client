@@ -35,7 +35,7 @@ class Controller():
 
     def run_command(self, command):
         """
-        Listen for a command from the user and runs it once it has been inputted
+        Initiates the Commands Factory and runs the selected command
         """
         try:
             cls = get_command(command)

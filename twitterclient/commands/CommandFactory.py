@@ -6,6 +6,8 @@ from CommandList import CommandList
 from CommandLogin import CommandLogin
 from CommandLogout import CommandLogout
 from CommandPost import CommandPost
+from CommandNext import CommandNext
+from CommandPrev import CommandPrev
 
 
 def get_command(command):

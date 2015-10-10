@@ -2,4 +2,4 @@ from fabric.api import local
 
 
 def test():
-    local('nosetests --with-coverage --rednose')
+    local('nosetests --rednose')

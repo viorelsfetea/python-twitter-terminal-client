@@ -1,4 +1,4 @@
-from ..helpers import Config
+from twitterclient.helpers import Config
 
 
 class CommandAbstract(object):
@@ -12,10 +12,12 @@ class CommandAbstract(object):
         self.view = view
         self.twitter = twitter
 
-    def require_valid_session(self):
+    def is_valid_session(self):
         if self.twitter.api is None:
             self.view.update_status_area("You need to be logged in to run this command")
             return False
+
+        return True
 
     def run(self):
         raise NotImplementedError()

@@ -1,10 +1,13 @@
 import os
 from CommandAbstract import CommandAbstract
-from ..helpers import Config
+from twitterclient.helpers import Config
 
 
 class CommandLogout(CommandAbstract):
     def run(self):
+        if not self.is_valid_session():
+            return False
+
         try:
             os.remove(Config.user_config_file)
         except OSError:

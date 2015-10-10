@@ -3,6 +3,7 @@ import os
 from nose.tools import raises
 from mock import patch, MagicMock, PropertyMock
 
+from twitterclient.commands.CommandList import CommandList
 from twitterclient.commands.CommandExit import CommandExit
 from twitterclient.commands.CommandLogout import CommandLogout
 
@@ -12,18 +13,22 @@ class View:
         pass
 
 
+class Twitter:
+    api = None
+
+
 class CommandsTest(unittest.TestCase):
 
     def setUp(self):
         self.view = View()
         self.view.update_status_area = MagicMock(name='update_status_area')
-        self.twitter_auth = None
+        self.twitter = Twitter()
 
         self.test_user_config = os.path.join(os.path.dirname(__file__), '.test_user_config')
 
     @raises(SystemExit)
     def test_exit(self):
-        CommandExit(self.view, self.twitter_auth).run()
+        CommandExit(self.view, self.twitter).run()
 
     def test_logout_config_file_exists(self):
         with patch('twitterclient.helpers.Config.user_config_file', new_callable=PropertyMock) as user_config_file:
@@ -32,16 +37,22 @@ class CommandsTest(unittest.TestCase):
             #create the config file
             open(self.test_user_config, 'a').close()
 
-            CommandLogout(self.view, self.twitter_auth).run()
+            CommandLogout(self.view, self.twitter).run()
             self.view.update_status_area.assert_called_once_with(
                 "Successfully logged you out"
             )
 
     def test_logout_config_file_missing(self):
-        CommandLogout(self.view, self.twitter_auth).run()
+        CommandLogout(self.view, self.twitter).run()
         self.view.update_status_area.assert_called_once_with(
             "Could not log you out. Please try again"
         )
+
+    def test_list_no_session(self):
+        self.assertFalse(CommandList(self.view, self.twitter).run())
+
+    def test_list_no_session(self):
+        self.assertFalse(CommandList(self.view, self.twitter).run())
 
     def tearDown(self):
         try:

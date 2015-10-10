@@ -10,6 +10,9 @@ class Twitter(object):
     # The api handler, if the user is logged in
     api = None
 
+    # page for the list of tweets
+    page = 1
+
     def __init__(self):
         self.load_auth_handler()
         self.load_api_handler()

@@ -77,6 +77,8 @@ class View(object):
                     login   - starts the flow to log you in to Twitter
                     logout  - logs you out
                     list    - list the most recent tweets
+                    next    - shows the next page of tweets
+                    prev    - shows the prev page of tweets
                     post    - post a tweet
 
                     '''
