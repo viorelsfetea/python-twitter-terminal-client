@@ -9,11 +9,13 @@ _(on Youtube)_
 ##Running it
 Create a virtual environment and pull the files into it
 
-Run `pip install -r dev_requirements.txt` and `pip install -r requirements.txt` if you want to extend the client.
+Do `pip install -r dev_requirements.txt` and `pip install -r requirements.txt` if you want to extend the client.
 
-Run `pip install -r requirements.txt` if you want just want to run it.
+Do `pip install -r requirements.txt` if you want just want to run it.
 
 Run the client with `python -m twitterclient.main`
+
+Use `fab test` to run the unit tests
 
 ##Extending the command list
 To add a new command, you have to create a class for it. All commands extend the CommandAbstract class and are loaded via the CommandFactory factory.
